@@ -15,6 +15,8 @@
 //      Led14 cada 0.5 segundos  (Este led utiliza este intrvalo de tiempo para utilizrlo
 //    como base de tiempo para monitorear visualmente los leds Led12 y Led13.
 //
+//    En esta nueva versión, la atención a el parpadeo de los leds, se ha modificado 
+//  con el llamado a funiones, cada una atiende el blink de cada led.
 //                                       12/10/2021
 //
 //*****************************************************************************************
@@ -50,12 +52,23 @@ void setup() {
 
 void loop() {
 
+  blink_Led12(5000);    //Blink de Led12 con intervalo de 5 seg de encndido y 5 seg apagado
+  blink_Led13(3000);    //Blink de Led13 con intervalo de 3 seg de encndido y 3 seg apagado
+  blink_Led14(500);     //Blink de Led14 con intervalo de 0.5 seg de encndido y 0.5 seg apagado
+
+}
+
+
+
 //****************************************************
-//  Bloque de progarma de blink del Led12
+//  Funciones de blink de leds Led12, Led13 y Led14
 //****************************************************
-     t1_12 = millis();                //Cargando tiempo actual
+
+void blink_Led12(int tiempo){
+
+   t1_12 = millis();                //Cargando tiempo actual
      t1_12 = t1_12 - t0_12;           //Determinando el tiempó transcurrido
-     if (t1_12 >= 5000){              //Ya son 5 segundos...?
+     if (t1_12 >= tiempo){              //Ya son 5 segundos...?
       if(Enc_12 ==1){                 //Sí son 5 segundos, Encender...
         digitalWrite(Led12,HIGH);     
         Enc_12 = 0;
@@ -67,16 +80,13 @@ void loop() {
         t0_12 = millis();             //Reiniciar t0_12
       }
      }
+}
 
-     //  Fin de Bloque de progarma de blink del Led12
-//****************************************************    
 
-//****************************************************
-//  Bloque de progarma de blink del Led13
-//****************************************************
+void blink_Led13(int tiempo){
      t1_13 = millis();                //Cargando tiempo actual
      t1_13 = t1_13 - t0_13;           //Determinando el tiempó transcurrido
-     if (t1_13 >= 3000){              //Ya son 3 segundos...?
+     if (t1_13 >= tiempo){              //Ya son 3 segundos...?
       if(Enc_13 ==1){                 //Sí, Encender... 
         digitalWrite(Led13,HIGH);     
         Enc_13 = 0;
@@ -88,17 +98,12 @@ void loop() {
         t0_13 = millis();             //Reiniciar t0_13
       }
      }
+}
 
-     //  Fin de Bloque de progarma de blink del Led13
-//****************************************************  
-
-
-//****************************************************
-//  Bloque de progarma de blink del Led14
-//****************************************************
-     t1_14 = millis();                //Cargando tiempo actual
+void blink_Led14(int tiempo){
+  t1_14 = millis();                //Cargando tiempo actual
      t1_14 = t1_14 - t0_14;           //Determinando el tiempó transcurrido
-     if (t1_14 >= 500){               //Ya son 500 mili segundos...?
+     if (t1_14 >= tiempo){               //Ya son 500 mili segundos...?
       if(Enc_14 ==1){                 //Sí, Encender...
         digitalWrite(Led14,HIGH);     
         Enc_14 = 0;
@@ -110,9 +115,4 @@ void loop() {
         t0_14 = millis();             //Reiniciar t0_14
       }
      }
-
-     //  Fin de Bloque de progarma de blink del Led14
-//****************************************************  
-
-    
 }
