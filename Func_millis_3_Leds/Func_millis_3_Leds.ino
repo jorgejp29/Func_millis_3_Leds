@@ -1,4 +1,4 @@
-//*****************************************************************************************
+///*****************************************************************************************
 //                                  Func_Millis_3_Leds
 //
 //    Autor: Jorge Miguel Jaimes Ponce
@@ -37,9 +37,9 @@ unsigned long t1_12 = 0;
 unsigned long t1_13 = 0;
 unsigned long t1_14 = 0;
 
-byte Enc_12 = 1;
-byte Enc_13 = 1;
-byte Enc_14 = 1;
+bool Led1 = false;
+bool Led2 = false;
+bool Led3 = false;
 
 
 
@@ -67,52 +67,32 @@ void loop() {
 void blink_Led12(int tiempo){
 
    t1_12 = millis();                //Cargando tiempo actual
-     t1_12 = t1_12 - t0_12;           //Determinando el tiempó transcurrido
-     if (t1_12 >= tiempo){              //Ya son 5 segundos...?
-      if(Enc_12 ==1){                 //Sí son 5 segundos, Encender...
-        digitalWrite(Led12,HIGH);     
-        Enc_12 = 0;
-        t0_12 = millis();             //Reiniciar t0_12
-      }
-      else {                          //Sí son 5 segundos, Apagar....    
-        digitalWrite(Led12,LOW);
-        Enc_12 = 1;
-        t0_12 = millis();             //Reiniciar t0_12
-      }
+    //Determinando el tiempó transcurrido
+     if (t1_12 - t0_12 >= tiempo){              //Ya son 5 segundos...?
+        t0_12 = millis();
+        Led1 = !Led1;
+        digitalWrite(Led12,Led1);      
      }
 }
 
 
 void blink_Led13(int tiempo){
      t1_13 = millis();                //Cargando tiempo actual
-     t1_13 = t1_13 - t0_13;           //Determinando el tiempó transcurrido
-     if (t1_13 >= tiempo){              //Ya son 3 segundos...?
-      if(Enc_13 ==1){                 //Sí, Encender... 
-        digitalWrite(Led13,HIGH);     
-        Enc_13 = 0;
-        t0_13 = millis();             //Reiniciar t0_13
-      }
-      else {                          //Si, Apagar....     
-        digitalWrite(Led13,LOW);
-        Enc_13 = 1;
-        t0_13 = millis();             //Reiniciar t0_13
-      }
+    //Determinando el tiempó transcurrido
+     if (t1_13 = t1_13 - t0_13 >= tiempo){              //Ya son 3 segundos...?
+        t0_13 = millis();
+        Led2 = !Led2;
+        digitalWrite(Led13,Led2);
      }
 }
 
 void blink_Led14(int tiempo){
   t1_14 = millis();                //Cargando tiempo actual
-     t1_14 = t1_14 - t0_14;           //Determinando el tiempó transcurrido
-     if (t1_14 >= tiempo){               //Ya son 500 mili segundos...?
-      if(Enc_14 ==1){                 //Sí, Encender...
-        digitalWrite(Led14,HIGH);     
-        Enc_14 = 0;
-        t0_14 = millis();             //Reiniciar t0_14
-      }
-      else {                          //Si, Apagar....   
-        digitalWrite(Led14,LOW);
-        Enc_14 = 1;
-        t0_14 = millis();             //Reiniciar t0_14
-      }
+     //Determinando el tiempó transcurrido
+     if (t1_14 - t0_14 >= tiempo){               //Ya son 500 mili segundos...?  
+        t0_14 = millis();  
+        Led3 = !Led3;
+        digitalWrite(Led14,Led3);
+     
      }
 }
