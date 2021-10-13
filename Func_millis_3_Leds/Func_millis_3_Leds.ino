@@ -42,20 +42,29 @@ bool Led2 = false;
 bool Led3 = false;
 
 
-
 void setup() {
-  //Co0nfigurando los LedsXX como salidas
+  //Configurando los LedsXX como salidas
   pinMode(Led12,OUTPUT);
   pinMode(Led13,OUTPUT);
   pinMode(Led14,OUTPUT);
+  
+  //Inicializando estado lógico de las salidas
+  digitalWrite(Led12,Led1);
+  digitalWrite(Led13,Led2);
+  digitalWrite(Led14,Led3);
+
+  //Inicializando t0 paa cada led
+  t0_12 = millis();
+  t0_13 = t0_12;
+  t0_14 = t0_12;
+  
 }
 
-void loop() {
 
+void loop() {
   blink_Led12(5000);    //Blink de Led12 con intervalo de 5 seg de encndido y 5 seg apagado
   blink_Led13(3000);    //Blink de Led13 con intervalo de 3 seg de encndido y 3 seg apagado
   blink_Led14(500);     //Blink de Led14 con intervalo de 0.5 seg de encndido y 0.5 seg apagado
-
 }
 
 
